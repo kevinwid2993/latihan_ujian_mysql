@@ -1,0 +1,255 @@
+mysql> create database coba;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table users(
+    -> id int auto_increment,
+    -> username varchar(50),
+    -> email varchar(50),
+    -> password varchar(50),
+    -> created_at timestamp default current_timestamp,
+    -> updated_at timestamp default current_timestamp on update current_timestamp,
+    -> primary key(id)
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> describe users;
++------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| Field      | Type        | Null | Key | Default           | Extra                                         |
++------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| id         | int(11)     | NO   | PRI | NULL              | auto_increment                                |
+| username   | varchar(50) | YES  |     | NULL              |                                               |
+| email      | varchar(50) | YES  |     | NULL              |                                               |
+| password   | varchar(50) | YES  |     | NULL              |                                               |
+| created_at | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| updated_at | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++------------+-------------+------+-----+-------------------+-----------------------------------------------+
+6 rows in set (0.06 sec)
+
+mysql> insert into users (username, email, password) values
+    -> ('Andi', 'andi@andi.com', '12345'),
+    -> ('Budi', 'budi@budi.com', '67890'),
+    -> ('Caca', 'caca@caca.com', 'abcde'),
+    -> ('Deni', 'deni@deni.com', 'fghij'),
+    -> ('Euis', 'euis@euis.com', 'klmno'),
+    -> ('Fafa', 'fafa@fafa.com', 'pqrst');
+Query OK, 6 rows affected (0.05 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from users;
++----+----------+---------------+----------+---------------------+---------------------+
+| id | username | email         | password | created_at          | updated_at          |
++----+----------+---------------+----------+---------------------+---------------------+
+|  1 | Andi     | andi@andi.com | 12345    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
+|  2 | Budi     | budi@budi.com | 67890    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
+|  3 | Caca     | caca@caca.com | abcde    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
+|  4 | Deni     | deni@deni.com | fghij    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
+|  5 | Euis     | euis@euis.com | klmno    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
+|  6 | Fafa     | fafa@fafa.com | pqrst    | 2019-05-22 16:20:52 | 2019-05-22 16:20:52 |
++----+----------+---------------+----------+---------------------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql>  create table courses(
+    -> id int auto_increment,
+    -> course varchar(50),
+    -> mentor varchar(50),
+    -> title varchar(50),
+    -> primary key(id)
+    -> );
+
+mysql> describe courses;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| course | varchar(50) | YES  |     | NULL    |                |
+| mentor | varchar(50) | YES  |     | NULL    |                |
+| title  | varchar(50) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into courses (course, mentor, title) values
+    -> ('C++', 'Ari', 'Dr.'),
+    -> ('C#', 'Ari', 'Dr.'),
+    -> ('C#', 'Ari', 'Dr.'),
+    -> ('CSS', 'Cania', 'S.KOM'),
+    -> ('HTML', 'Cania', 'S.KOM'),
+    -> ('Javascript', 'Cania', 'S.KOM'),
+    -> ('Python', 'Barry', 'S.T.'),
+    -> ('Micropython', 'Barry', 'S.T.'),
+    -> ('Java','Darren','M.T.'),
+    -> ('Ruby','Darren','M.T.');
+Query OK, 10 rows affected (0.05 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++----+-------------+--------+-------+
+| id | course      | mentor | title |
++----+-------------+--------+-------+
+|  1 | C++         | Ari    | Dr.   |
+|  2 | C#          | Ari    | Dr.   |
+|  3 | C#          | Ari    | Dr.   |
+|  4 | CSS         | Cania  | S.KOM |
+|  5 | HTML        | Cania  | S.KOM |
+|  6 | Javascript  | Cania  | S.KOM |
+|  7 | Python      | Barry  | S.T.  |
+|  8 | Micropython | Barry  | S.T.  |
+|  9 | Java        | Darren | M.T.  |
+| 10 | Ruby        | Darren | M.T.  |
++----+-------------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> create table userCourse ( id_user int, id_course int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe usercourse;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| id_user   | int(11) | YES  |     | NULL    |       |
+| id_course | int(11) | YES  |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into usercourse (id_user, id_course) values
+    -> ('1','1'),
+    -> ('1','2'),
+    -> ('1','3'),
+    -> ('2','4'),
+    -> ('2','5'),
+    -> ('2','6'),
+    -> ('3','7'),
+    -> ('3','8'),
+    -> ('3','9'),
+    -> ('4','1'),
+    -> ('4','3'),
+    -> ('4','5'),
+    -> ('5','2'),
+    -> ('5','4'),
+    -> ('5','6'),
+    -> ('6','7'),
+    -> ('6','8'),
+    -> ('6','9');
+
+mysql> select * from usercourse;
++---------+-----------+
+| id_user | id_course |
++---------+-----------+
+|       1 |         1 |
+|       1 |         2 |
+|       1 |         3 |
+|       2 |         4 |
+|       2 |         5 |
+|       2 |         6 |
+|       3 |         7 |
+|       3 |         8 |
+|       3 |         9 |
+|       4 |         1 |
+|       4 |         3 |
+|       4 |         5 |
+|       5 |         2 |
+|       5 |         4 |
+|       5 |         6 |
+|       6 |         7 |
+|       6 |         8 |
+|       6 |         9 |
++---------+-----------+
+18 rows in set (0.00 sec)
+
+mysql> select users.id, username, course, mentor, title
+    -> from users,usercourse,courses
+    -> where users.id=id_user and courses.id=id_course;
++----+----------+-------------+--------+-------+
+| id | username | course      | mentor | title |
++----+----------+-------------+--------+-------+
+|  1 | Andi     | C++         | Ari    | Dr.   |
+|  1 | Andi     | C#          | Ari    | Dr.   |
+|  1 | Andi     | C#          | Ari    | Dr.   |
+|  2 | Budi     | CSS         | Cania  | S.KOM |
+|  2 | Budi     | HTML        | Cania  | S.KOM |
+|  2 | Budi     | Javascript  | Cania  | S.KOM |
+|  3 | Caca     | Python      | Barry  | S.T.  |
+|  3 | Caca     | Micropython | Barry  | S.T.  |
+|  3 | Caca     | Java        | Darren | M.T.  |
+|  4 | Deni     | C++         | Ari    | Dr.   |
+|  4 | Deni     | C#          | Ari    | Dr.   |
+|  4 | Deni     | HTML        | Cania  | S.KOM |
+|  5 | Euis     | C#          | Ari    | Dr.   |
+|  5 | Euis     | CSS         | Cania  | S.KOM |
+|  5 | Euis     | Javascript  | Cania  | S.KOM |
+|  6 | Fafa     | Python      | Barry  | S.T.  |
+|  6 | Fafa     | Micropython | Barry  | S.T.  |
+|  6 | Fafa     | Java        | Darren | M.T.  |
++----+----------+-------------+--------+-------+
+18 rows in set (0.00 sec)
+
+mysql> select users.id, username,course,mentor,title
+    -> from users,usercourse,courses
+    -> where users.id = id_user and courses.id = id_course and title in ('S.T.','S.KOM');
++----+----------+-------------+--------+-------+
+| id | username | course      | mentor | title |
++----+----------+-------------+--------+-------+
+|  2 | Budi     | CSS         | Cania  | S.KOM |
+|  2 | Budi     | HTML        | Cania  | S.KOM |
+|  2 | Budi     | Javascript  | Cania  | S.KOM |
+|  3 | Caca     | Python      | Barry  | S.T.  |
+|  3 | Caca     | Micropython | Barry  | S.T.  |
+|  4 | Deni     | HTML        | Cania  | S.KOM |
+|  5 | Euis     | CSS         | Cania  | S.KOM |
+|  5 | Euis     | Javascript  | Cania  | S.KOM |
+|  6 | Fafa     | Python      | Barry  | S.T.  |
+|  6 | Fafa     | Micropython | Barry  | S.T.  |
++----+----------+-------------+--------+-------+
+10 rows in set (0.05 sec)
+
+mysql> select users.id, username,course,mentor,title
+    -> from users,usercourse,courses
+    -> where users.id = id_user and courses.id = id_course and title != 'S.T.' and title != 'S.KOM';
++----+----------+--------+--------+-------+
+| id | username | course | mentor | title |
++----+----------+--------+--------+-------+
+|  1 | Andi     | C++    | Ari    | Dr.   |
+|  1 | Andi     | C#     | Ari    | Dr.   |
+|  1 | Andi     | C#     | Ari    | Dr.   |
+|  3 | Caca     | Java   | Darren | M.T.  |
+|  4 | Deni     | C++    | Ari    | Dr.   |
+|  4 | Deni     | C#     | Ari    | Dr.   |
+|  5 | Euis     | C#     | Ari    | Dr.   |
+|  6 | Fafa     | Java   | Darren | M.T.  |
++----+----------+--------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select course, mentor, title, count(course) as jumlah_peserta
+    -> from users,usercourse,courses
+    -> where users.id=id_user and courses.id = id_course
+    -> group by course;
++-------------+--------+-------+----------------+
+| course      | mentor | title | jumlah_peserta |
++-------------+--------+-------+----------------+
+| C++         | Ari    | Dr.   |              2 |
+| C#          | Ari    | Dr.   |              4 |
+| CSS         | Cania  | S.KOM |              2 |
+| HTML        | Cania  | S.KOM |              2 |
+| Javascript  | Cania  | S.KOM |              2 |
+| Python      | Barry  | S.T.  |              2 |
+| Micropython | Barry  | S.T.  |              2 |
+| Java        | Darren | M.T.  |              2 |
++-------------+--------+-------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select mentor, count(course) as jumlah_peserta_didik, count(mentor)*2000000 as total_fee
+    -> from users,usercourse,courses
+    -> where users.id = id_user and courses.id = id_course
+    -> group by mentor;
++--------+----------------------+-----------+
+| mentor | jumlah_peserta_didik | total_fee |
++--------+----------------------+-----------+
+| Ari    |                    6 |  12000000 |
+| Cania  |                    6 |  12000000 |
+| Barry  |                    4 |   8000000 |
+| Darren |                    2 |   4000000 |
++--------+----------------------+-----------+
+4 rows in set (0.00 sec)
+
+
+
+
